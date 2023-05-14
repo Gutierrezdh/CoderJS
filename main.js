@@ -1,20 +1,3 @@
-
-
-/* Variables 
-Funciones
-Objetos
-Arrays
-Metodos de busqueda y filtrado en Arrays 
-Uso de Prompt
-Uso de Alert o Console.log()
-*/
-/* Objeto - > Usuario
-Array - > Usuarios
-funciones - > Busqueda y filtrado de usuario / contraseña
-Prompt - > Usuario / Contraseña
-Alert / Console Log -> Resultado del filtrado
- */
-
 /* Cargo datos inciales de usuario dados de alta en la DB */
 
 const usuarios = [
@@ -35,12 +18,11 @@ let clave = prompt("Ingrese su contraseña");
         return usuarios.filter((el) => el.usuario.toLowerCase() === nombreUsuario);
     }
     const existenciaUsuario = ValidarExistenciaUsuario(usuario);
-    console.log(existenciaUsuario[0]);
+
 
 /* Genero funcion para validar la contraseña del usuario */
 
-    function ValidarClaveUsuario() {
-        if (existenciaUsuario.length > 0) {
+    function validarClaveUsuario() {
             const ValidacionClave = existenciaUsuario.filter((el) => el.contraseña === clave);
             if (ValidacionClave.length > 0) {
                 return 1;
@@ -48,29 +30,24 @@ let clave = prompt("Ingrese su contraseña");
             else {
                 return 0;
             }
-        }
-        else {
-            return 0;
-        }
-    }   
+    }
 
-const claveValida = ValidarClaveUsuario(usuario);
+    /* Valido contraseña del usuario */
 
+    let claveValida;
+    if (existenciaUsuario.length === 0) {
+        claveValida = 0
+    }
+    else claveValida = validarClaveUsuario();
 
 /* Mensaje de validacion al usuario segun el resultado de las funciones */
 
-let bienvenida = `Bienvenido ${existenciaUsuario[0].nombre} ${existenciaUsuario[0].apellido}`;
-let errorValidacion = "Usuario o contraseña incorrectos"
-
-if (existenciaUsuario.length > 0) {
     if(claveValida == 1) {
-        alert(bienvenida)
+        let bienvenida = `Bienvenido ${existenciaUsuario[0].nombre} ${existenciaUsuario[0].apellido}`;
+        alert(bienvenida);
     } 
     else {
-        alert(errorValidacion);  
+        let errorValidacion = "Usuario o contraseña incorrectos"
+        alert(errorValidacion);
     }
-} 
-else {
-    alert(errorValidacion);
-}
 
