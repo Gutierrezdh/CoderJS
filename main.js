@@ -40,9 +40,14 @@ let clave = prompt("Ingrese su contraseña");
 /* Genero funcion para validar la contraseña del usuario */
 
     function ValidarClaveUsuario() {
-        const ValidacionClave = existenciaUsuario.filter((el) => el.contraseña === clave);
-        if (ValidacionClave.length > 0) {
-            return 1;
+        if (existenciaUsuario.length > 0) {
+            const ValidacionClave = existenciaUsuario.filter((el) => el.contraseña === clave);
+            if (ValidacionClave.length > 0) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
         }
         else {
             return 0;
