@@ -1,34 +1,71 @@
-/* Defino funciones que utilizaré para el calculo de precios */
 
-function calcularDescuentos(precioneto, porcentaje){
-    return (precioneto == 0 ? 0 : porcentaje == 0 ? 0 : precioneto * porcentaje / 100)    
+
+/* Variables 
+Funciones
+Objetos
+Arrays
+Metodos de busqueda y filtrado en Arrays 
+Uso de Prompt
+Uso de Alert o Console.log()
+*/
+/* Objeto - > Usuario
+Array - > Usuarios
+funciones - > Busqueda y filtrado de usuario / contraseña
+Prompt - > Usuario / Contraseña
+Alert / Console Log -> Resultado del filtrado
+ */
+
+/* Cargo datos inciales de usuario dados de alta en la DB */
+
+const usuarios = [
+    { usuario: 'Daniel', contraseña: '123asD', nombre: 'Daniel', apellido: 'Gutiérrez'},
+    { usuario: 'Carlos', contraseña: '456bcC', nombre: 'Carlos', apellido: 'Velazquez'},
+    { usuario: 'Victoria', contraseña: '789asD', nombre: 'Victoria', apellido: 'Pérez'},
+    { usuario: 'Romina', contraseña: '654bcC', nombre: 'Romina', apellido: 'Rodriguez'}
+]
+
+/* Solicito credenciales al usuario */
+let usuario = prompt("Ingrese su usuario");
+usuario = usuario.toLowerCase();
+let clave = prompt("Ingrese su contraseña");
+
+/* Genero funcion para validar el nombre de usuario */
+
+    function ValidarExistenciaUsuario (nombreUsuario){
+        return usuarios.filter((el) => el.usuario.toLowerCase() === nombreUsuario);
+    }
+    const existenciaUsuario = ValidarExistenciaUsuario(usuario);
+    console.log(existenciaUsuario[0]);
+
+/* Genero funcion para validar la contraseña del usuario */
+
+    function ValidarClaveUsuario() {
+        const ValidacionClave = existenciaUsuario.filter((el) => el.contraseña === clave);
+        if (ValidacionClave.length > 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }   
+
+const claveValida = ValidarClaveUsuario(usuario);
+
+
+/* Mensaje de validacion al usuario segun el resultado de las funciones */
+
+let bienvenida = `Bienvenido ${existenciaUsuario[0].nombre} ${existenciaUsuario[0].apellido}`;
+let errorValidacion = "Usuario o contraseña incorrectos"
+
+if (existenciaUsuario.length > 0) {
+    if(claveValida == 1) {
+        alert(bienvenida)
+    } 
+    else {
+        alert(errorValidacion);  
+    }
+} 
+else {
+    alert(errorValidacion);
 }
 
-function calcularIva(precioneto, descuento, alicuota){
-    return (precioneto == 0 ? 0 : alicuota == 0 ? 0 : (precioneto - descuento) * alicuota / 100)    
-}
-
-/* Solicito al usuario confirmación para comenzar proceso de cotización*/
-    let AgregaArticulo = prompt("Desea calcular el costo de un articulo? (Respuestas posibles; SI - NO)");
-
-    if (AgregaArticulo.toLowerCase() === "si"){
-        while(AgregaArticulo.toLowerCase() === "si"){
-            let neto = prompt("Ingrese el precio neto del artículo (ARS)");
-            let Porcdescuento = prompt("Si el articulo tiene algun descuento ingrese el porcentaje de descuento por favor.");
-            let Porciva = prompt("Ingrese la alícuota de iva para el artículo que desea cotizar");
-            let descuentos = calcularDescuentos(neto, Porcdescuento)
-            let impuestos = calcularIva(neto, descuentos, Porciva);
-            let total = neto - descuentos + impuestos;                
-            let mensaje =`El precio es ARS ${total}`;
-            alert(mensaje);
-        AgregaArticulo = prompt("Desea calcular el precio de otro artículo? (Respuestas posibles; SI - NO)");
-        }  
-    }    
-    else if (AgregaArticulo.toLowerCase() === "no"){
-    let mensaje ="Gracias por usar nuestro calculador de precios";
-    alert(mensaje);
-    }
-    else{
-    let mensaje =`${AgregaArticulo.toUpperCase()} no es un valor válido`;
-    alert(mensaje);    
-    }
