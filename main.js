@@ -34,6 +34,7 @@ btnVaciarCarrito.addEventListener('click', () => {
     console.log('Carrito vaciado');
     validarActivacionCarrito();
     actualizarEstadoBotonCarrito();
+    Swal.fire('El carrito fue vaciado');
 });
 
 // Genero constructor de artículos
@@ -129,11 +130,12 @@ const agregarCarritoBtn = tarjeta.getElementsByClassName('agregar-carrito')[0];
         if (carritoItem) {
         const carritoItemData = JSON.parse(carritoItem);
         carritoItemData.cantidad += 1;
-        localStorage.setItem(carritoItemID, JSON.stringify(carritoItemData));
+        localStorage.setItem(carritoItemID, JSON.stringify(carritoItemData));        
         } 
         else {
         localStorage.setItem(carritoItemID, JSON.stringify(articulo));
         }
+    Swal.fire('Artículo agregado al carrito')
     validarActivacionCarrito();
     actualizarEstadoBotonCarrito(); 
     console.log('Artículo agregado al carrito:', articulo);
@@ -148,6 +150,7 @@ const agregarCarritoBtn = tarjeta.getElementsByClassName('agregar-carrito')[0];
     actualizarEstadoBotonCarrito(); 
     console.log(localStorage);
     console.log('Artículo eliminado del carrito:', articulo);
+    Swal.fire('Artículo quitado del carrito')
     });
 });
 }
