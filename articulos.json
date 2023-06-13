@@ -1,0 +1,37 @@
+{
+    "amarillo": {
+    "id": 1,
+    "nombre": "Amor amarillo",
+    "anio": 1993,
+    "precio": 4900,
+    "imagen": "./img/amoramarillo.jpg"
+    },
+    "bocanada": {
+    "id": 2,
+    "nombre": "Bocanada",
+    "anio": 1999,
+    "precio": 4900,
+    "imagen": "./img/bocanada.jpg"
+    },
+    "seshoy": {
+    "id": 3,
+    "nombre": "Siempre es hoy",
+    "anio": 2002,
+    "precio": 5000,
+    "imagen": "./img/siempreeshoy.jpg"
+    },
+    "ahivamos": {
+    "id": 4,
+    "nombre": "Ahí vamos",
+    "anio": 2006,
+    "precio": 5400,
+    "imagen": "./img/ahivamos.jpg"
+    },
+    "fnatural": {
+    "id": 5,
+    "nombre": "Fuerza Natural",
+    "anio": 2009,
+    "precio": 5400,
+    "imagen": "./img/fuerzanatural.jpg"
+    }
+}  
